@@ -34,7 +34,6 @@ const Home: React.FC = () => {
       erc20(OLD_JENNY).methods.balanceOf(account).call(),
       erc20(OLD_JENNY).methods.allowance(account, MIGRATOR).call(),
     ])
-    console.log(Number(allowance))
     setMaxAmount(formatEther(balance))
     setIsApproved(Number(allowance) > 0)
   }
