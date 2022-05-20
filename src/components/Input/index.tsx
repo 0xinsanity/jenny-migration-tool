@@ -54,6 +54,9 @@ const Container = styled.div<ContainerProps>`
   justify-content: ${({ type }) =>
     type === "checkbox" ? "space-between" : "center"};
   width: 100%;
+  border: 1px solid #f2f1f8;
+  padding: 24px;
+  border-radius: 16px;
 `
 
 interface InputWithTitle extends React.ComponentProps<FormInput> {

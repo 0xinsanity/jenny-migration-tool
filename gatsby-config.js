@@ -5,34 +5,7 @@ require("dotenv").config({
 
 const path = require(`path`)
 
-const config = require("./website")
-
 module.exports = {
-  siteMetadata: {
-    siteUrl: config.siteUrl,
-    title: config.siteTitle,
-    twitterHandle: config.twitterHandle,
-    description: config.siteDescription,
-    keywords: [
-      "Software Engineer",
-      "Musician",
-      "JavaScript Training",
-      "Learn Music",
-    ],
-    canonicalUrl: config.siteUrl,
-    author: {
-      name: config.author,
-      minibio: config.minibio,
-    },
-    organization: {
-      name: config.organization,
-      url: config.siteUrl,
-    },
-    social: {
-      twitter: config.twitterHandle,
-      fbAppID: "",
-    },
-  },
   pathPrefix: "__PATH_PREFIX__",
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -65,7 +38,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Abacus Protocol Portal`,
+        name: `Jenny Migration Tool`,
         display: `minimal-ui`,
         path: `${__dirname}/src/images`,
         icon: `src/images/logo.png`,

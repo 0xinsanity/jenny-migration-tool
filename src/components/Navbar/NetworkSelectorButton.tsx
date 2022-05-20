@@ -85,6 +85,7 @@ export const NetworkSelectorModal = ({
   const { chainId } = useActiveWeb3React()
   const { ethereum } = window as any
   const MetamaskRequest = async (network: NetworkInfo) => {
+    console.log("change network", network.chainId)
     if (network.chainId === 1) {
       try {
         await ethereum.request({
@@ -139,25 +140,6 @@ export const NetworkSelectorModal = ({
           }
         }
       }
-    } else {
-      ethereum
-        .request({
-          method: "wallet_addEthereumChain",
-          params: [
-            {
-              chainId: `0x${network.chainId.toString(16)}`,
-              chainName: network.network,
-              nativeCurrency: {
-                name: network.symbol,
-                symbol: network.symbol,
-                decimals: 18,
-              },
-              rpcUrls: [network.rpc],
-              blockExplorerUrls: [network.blockExplorer],
-            },
-          ],
-        })
-        .then(() => setShowModal(false))
     }
   }
 

@@ -3,13 +3,7 @@
 import { AbstractConnector } from "@web3-react/abstract-connector"
 import { InjectedConnector } from "@web3-react/injected-connector"
 import Web3 from "web3"
-import {
-  fortmatic,
-  portis,
-  walletconnect,
-  walletlink,
-  InjectedConnectorProps,
-} from "./connectors"
+import { InjectedConnectorProps } from "./connectors"
 import EthIcon from "../../images/ETH.svg"
 import AethIcon from "../../images/AETH.svg"
 
@@ -39,98 +33,17 @@ export const NetworkSymbolIcons = {
 
 export const OPENSEA_API_KEY = process.env.GATSBY_OPENSEA_API_KEY || undefined
 export const NetworkContextName = "NETWORK"
-export const ETH_RPC = process.env.GATSBY_NETWORK_URL as string
-export const ARBITRUM_ETH_RPC = process.env
-  .GATSBY_APP_ARBITRUM_NETWORK_URL as string
-export const ARBITRUM_NETWORK_CHAIN_ID = Number(
-  process.env.GATSBY_APP_ARBITRUM_CHAIN_ID as string
-)
-export const NETWORK_CHAIN_ID = Number(process.env.GATSBY_CHAIN_ID as string)
+export const ETH_RPC =
+  "https://rinkeby.infura.io/v3/626c57c48b2f4e34bb6e05eca7ea256a"
+export const NETWORK_CHAIN_ID = 4
 export const IS_PRODUCTION = process.env.GATSBY_IS_PRODUCTION === "true"
-export const OPENSEA_LINK = process.env.GATSBY_OPENSEA_API as string
-export const BACKEND_LINK = process.env.GATSBY_APP_SERVER as string
 
-const ETH_ABC_VAULT_CONTRACT = IS_PRODUCTION ? "" : ""
-const ETH_ABC_TREASURY_ADDRESS = IS_PRODUCTION
-  ? "0xA20B4b391Cd5f581Ab17a8d61388e0fe78dde28C"
-  : "0x593978a0Db0473D813943b0dAfB5bCE1aF3Ab506"
-const ETH_ABC_TOKEN_ADDRESS = IS_PRODUCTION
-  ? "0x4Ec341bB76Ea53e57907675C84227F3a0e52a206"
-  : "0xE873Bf0b6705Ac231cDB18491e1518873a3C5754"
-const ETH_ABC_AUCTION_ADDRESS = IS_PRODUCTION
-  ? "0x46dc64ABa177cA298b827840F285f95498ab3ACd"
-  : "0xc34fe8aa917716B6c12C7234EE4a7D91B231cBE1"
-const ETH_ABC_PRICING_SESSION_ADDRESS = IS_PRODUCTION
-  ? "0x37b4932ECeAE6b07b761F4B86975325Cb36c31aD"
-  : "0x0816DdF293398927736E117Bc60eb6F7fB1195AA"
-
-const ARB_ABC_VAULT_CONTRACT = IS_PRODUCTION
-  ? "0xB3f1069B04726C145197853Db772483Bd6B9650D"
-  : "0x828912757A7e94E9f43dcb2c8B196050e1A0A13c"
-const ARB_ABC_TREASURY_ADDRESS = IS_PRODUCTION
-  ? "0x93dcf21284B78163ec218DeF37471C4B77CCC6E1"
-  : "0x41FD0B4393E3f68f21CfCE916d671E1BA0775b9B"
-const ARB_ABC_TOKEN_ADDRESS = IS_PRODUCTION
+export const OLD_JENNY = IS_PRODUCTION
+  ? "0xa499648fd0e80fd911972bbeb069e4c20e68bf22"
+  : "0x02fcbdb70a3c5b581d255ce1067a55d3d1ce6b4d"
+export const MIGRATOR = IS_PRODUCTION
   ? ""
-  : "0x3Cf4ac586D388b0a44ef4f1FAB829a9C9A8de587"
-const ARB_ABC_AUCTION_ADDRESS = IS_PRODUCTION
-  ? "0x396dd1f7E3c8044784937935F834C3F8d58EB497"
-  : "0x91eb9bF3F7EA1B983072A2488232C10D92056696"
-const ARB_ABC_PRICING_SESSION_ADDRESS = IS_PRODUCTION
-  ? "0x014dea5dd7CE12Ce494b553F133739873247021f"
-  : "0xD23af2256cEC684E19e4c5Eb6805110e74472182"
-
-export const ABC_VAULT_ADDRESS = (networkSymbol: NetworkSymbolEnum) => {
-  switch (networkSymbol) {
-    case NetworkSymbolEnum.ETH:
-      return ETH_ABC_VAULT_CONTRACT
-    case NetworkSymbolEnum.ARBITRUM:
-      return ARB_ABC_VAULT_CONTRACT
-    case NetworkSymbolEnum.NONE:
-      return ARB_ABC_VAULT_CONTRACT
-    default:
-      return ""
-  }
-}
-
-export const ABC_TREASURY_ADDRESS = (networkSymbol: NetworkSymbolEnum) =>
-  networkSymbol === NetworkSymbolEnum.ETH
-    ? ETH_ABC_TREASURY_ADDRESS
-    : ARB_ABC_TREASURY_ADDRESS
-
-export const ABC_TOKEN_ADDRESS = (networkSymbol: NetworkSymbolEnum) =>
-  networkSymbol === NetworkSymbolEnum.ETH
-    ? ETH_ABC_TOKEN_ADDRESS
-    : ARB_ABC_TOKEN_ADDRESS
-
-export const ABC_AUCTION_ADDRESS = (networkSymbol: NetworkSymbolEnum) => {
-  switch (networkSymbol) {
-    case NetworkSymbolEnum.ETH:
-      return ETH_ABC_AUCTION_ADDRESS
-    case NetworkSymbolEnum.ARBITRUM:
-      return ARB_ABC_AUCTION_ADDRESS
-    case NetworkSymbolEnum.NONE:
-      return ARB_ABC_AUCTION_ADDRESS
-    default:
-      return ""
-  }
-}
-export const ABC_PRICING_SESSION_ADDRESS = (
-  networkSymbol: NetworkSymbolEnum
-) => {
-  switch (networkSymbol) {
-    case NetworkSymbolEnum.ETH:
-      return ETH_ABC_PRICING_SESSION_ADDRESS
-    case NetworkSymbolEnum.ARBITRUM:
-      return ARB_ABC_PRICING_SESSION_ADDRESS
-    case NetworkSymbolEnum.NONE:
-      return ARB_ABC_PRICING_SESSION_ADDRESS
-    default:
-      return ""
-  }
-}
-export const ETH_USD_ORACLE_ADDRESS =
-  "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+  : "0xd372aE03E8677ccC99308AbD1C3A478D2109A4A5"
 
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
@@ -145,7 +58,6 @@ export interface NetworkInfo {
 
 const NETWORK_ADDRESSES = {
   [NetworkSymbolEnum.ETH]: ETH_RPC,
-  [NetworkSymbolEnum.ARBITRUM]: ARBITRUM_ETH_RPC,
 }
 
 export const web3 = (networkSymbol: NetworkSymbolEnum) =>
@@ -164,21 +76,10 @@ export const NetworkInfoMap: NetworkInfo[] = [
       ? "https://etherscan.io/#/"
       : "https://rinkeby.etherscan.io/#/",
   },
-  {
-    rpc: ARBITRUM_ETH_RPC,
-    chainId: ARBITRUM_NETWORK_CHAIN_ID,
-    symbol: "AETH",
-    network: IS_PRODUCTION ? "Arbitrum One" : "Arbitrum Testnet Rinkeby",
-    logo: "AETH.svg",
-    blockExplorer: IS_PRODUCTION
-      ? "https://explorer.arbitrum.io/#/"
-      : "https://rinkeby-explorer.arbitrum.io/#/",
-  },
 ]
 
 export const NetworkSymbolAndId = {
   [NETWORK_CHAIN_ID]: NetworkSymbolEnum.ETH,
-  [ARBITRUM_NETWORK_CHAIN_ID]: NetworkSymbolEnum.ARBITRUM,
 }
 
 export interface WalletInfo {
@@ -210,40 +111,5 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     description: "Easy-to-use browser extension.",
     href: null,
     color: "#E8831D",
-  },
-  WALLET_CONNECT: {
-    connector: walletconnect,
-    name: "WalletConnect",
-    iconName: "walletConnectIcon.svg",
-    description: "Connect to Trust Wallet, Rainbow Wallet and more...",
-    href: null,
-    color: "#4196FC",
-    mobile: true,
-  },
-  WALLET_LINK: {
-    connector: walletlink,
-    name: "Wallet Link",
-    iconName: "coinbaseWalletIcon.svg",
-    description: "Use Coinbase Wallet app on mobile device",
-    href: null,
-    color: "#315CF5",
-  },
-  FORTMATIC: {
-    connector: fortmatic,
-    name: "Fortmatic",
-    iconName: "fortmaticIcon.png",
-    description: "Login using Fortmatic hosted wallet",
-    href: null,
-    color: "#6748FF",
-    mobile: true,
-  },
-  Portis: {
-    connector: portis,
-    name: "Portis",
-    iconName: "portisIcon.png",
-    description: "Login using Portis hosted wallet",
-    href: null,
-    color: "#4A6C9B",
-    mobile: true,
   },
 }

@@ -65,6 +65,6 @@ export const portis = new PortisConnector({
 // mainnet only
 export const walletlink = new WalletLinkConnector({
   url: process.env.GATSBY_NETWORK_URL as string,
-  appName: "Abacus Protocol",
+  appName: "Jenny Migration Tool",
   appLogoUrl: "🧮",
 })

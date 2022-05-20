@@ -25,9 +25,11 @@ export const Subheader = styled.h4`
 export const UniversalContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding-bottom: 0px;
+  grid-gap: 25px;
 `
 
 export const SmallUniversalContainer = styled(UniversalContainer)`

@@ -3,15 +3,10 @@ import styled from "styled-components"
 import { Row } from "shards-react"
 import { useActiveWeb3React, usePrevious } from "@hooks/index"
 import { shortenAddress } from "@config/utils"
-import {
-  useGetCurrentNetwork,
-  useToggleWalletModal,
-} from "@state/application/hooks"
-import { Menu, X } from "react-feather"
-import { NetworkSymbolEnum } from "@config/constants"
+import { useToggleWalletModal } from "@state/application/hooks"
 import { theme } from "@config/theme"
 import loadable from "@loadable/component"
-import Button, { ButtonClear } from "../Button"
+import Button from "../Button"
 
 const NetworkSelectorButton = loadable(() => import("./NetworkSelectorButton"))
 
@@ -19,12 +14,6 @@ const RowStyled = styled(Row)`
   padding: 0px;
   transition: 0.3s;
   margin: 0;
-`
-
-const Logo = styled.a`
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: ${theme.colors.text1};
 `
 
 const LinkList = styled.div<{ menuOpen: boolean }>`
@@ -43,7 +32,7 @@ const LinkList = styled.div<{ menuOpen: boolean }>`
   @media ${theme.mediaMin.splitCenter} {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
     grid-gap: 40px;
     flex-direction: row;
     position: unset;
@@ -65,46 +54,12 @@ const ListSectionSelector = styled.div`
   }
 `
 
-const ListSection = styled(ListSectionSelector)`
-  @media ${theme.mediaMin.splitCenter} {
-    width: 100%;
-    justify-content: center;
-  }
-`
-
-const MobileNavButton = styled(ButtonClear)`
-  @media ${theme.mediaMin.splitCenter} {
-    display: none;
-  }
-`
-
-const HeaderLink = styled(ButtonClear).attrs(({ disabled }) => ({
-  ...(disabled ? { href: "#" } : {}),
-}))<{ active: string }>`
-  min-width: fit-content;
-  opacity: 0.4;
-  transition: 0.2s;
-  font-size: 1rem;
-  ${({ disabled }) => (disabled ? "cursor: not-allowed; opacity: 0.2;" : "")}
-
-  &:hover {
-    opacity: ${({ disabled }) => (disabled ? "0.2" : "1")};
-  }
-
-  ${({ active }) =>
-    active === "true" &&
-    `
-    opacity: 1;
-  `}
-`
-
 const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 0px;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid #e4e6ee;
   background-color: ${theme.colors.bg1};
   height: ${theme.navbar.height};
 
@@ -115,13 +70,18 @@ const NavbarContainer = styled.div`
   }
 `
 
+const Logo = styled.a`
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: ${theme.colors.text1};
+  width: 300px;
+`
+
 const Navbar = ({ location }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const toggleWalletModal = useToggleWalletModal()
   const prevLocation = usePrevious(location)
-  const networkSymbol = useGetCurrentNetwork()
-  const isNetworkSymbolNone = networkSymbol === NetworkSymbolEnum.NONE
 
   useEffect(() => {
     if (location !== prevLocation) {
@@ -132,58 +92,8 @@ const Navbar = ({ location }) => {
   return (
     <RowStyled>
       <NavbarContainer>
-        <Logo href="/">Abacus</Logo>
-        <MobileNavButton onClick={() => setMenuOpen((open) => !open)}>
-          {menuOpen ? <X /> : <Menu />}
-        </MobileNavButton>
+        <Logo href="/">uJenny Migration Tool</Logo>
         <LinkList menuOpen={menuOpen}>
-          <ListSection>
-            <HeaderLink
-              as="a"
-              href="/"
-              active={(location.pathname === "/").toString()}
-            >
-              Explore
-            </HeaderLink>
-            <HeaderLink
-              as="a"
-              href="/auction"
-              active={location.pathname.includes("/auction").toString()}
-            >
-              Auction
-            </HeaderLink>
-            <HeaderLink
-              as="a"
-              href="/my-sessions"
-              active={location.pathname.includes("/my-sessions").toString()}
-              disabled={isNetworkSymbolNone}
-            >
-              My Sessions
-            </HeaderLink>
-            <HeaderLink
-              as="a"
-              href="/claim-pool"
-              active={location.pathname.includes("/claim-pool").toString()}
-              disabled={isNetworkSymbolNone}
-            >
-              Claim & Deposit
-            </HeaderLink>
-            <HeaderLink
-              as="a"
-              href="https://legacy.abacus.wtf"
-              active={location.pathname.includes("/legacy").toString()}
-            >
-              Legacy
-            </HeaderLink>
-            <HeaderLink
-              as="a"
-              target="_blank"
-              href="https://abcdao.notion.site/Knowledge-Center-903c10f39eb24efb8e55644a992f859b"
-              active={location.pathname.includes("/faq").toString()}
-            >
-              FAQ
-            </HeaderLink>
-          </ListSection>
           <ListSectionSelector>
             <NetworkSelectorButton />
             <Button onClick={() => toggleWalletModal()}>

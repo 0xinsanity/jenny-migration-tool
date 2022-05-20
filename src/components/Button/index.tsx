@@ -4,14 +4,14 @@ import styled from "styled-components"
 
 const Buttons = styled(Button)`
   background-color: ${theme.colors.accent} !important;
-  border-radius: 53px;
+  border-radius: 25px;
   color: ${theme.colors.bg1};
   transition: 0.3s;
   opacity: 1;
-  font-size: 0.85rem;
+  font-size: 0.925rem;
   font-weight: 500;
   border: none;
-  padding: 11px 16px;
+  padding: 16px 20px;
   width: fit-content;
   min-width: fit-content;
 

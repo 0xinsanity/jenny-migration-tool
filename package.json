@@ -1,9 +1,9 @@
 {
-  "name": "abacus-protocol-portal",
+  "name": "jenny-migration",
   "private": true,
-  "description": "Abacus NFT Valuation",
+  "description": "Jenny Migration Tool",
   "version": "1.0",
-  "author": "Abacus Team",
+  "author": "0xinsanity",
   "dependencies": {
     "@ethersproject/address": "^5.5.0",
     "@ethersproject/bignumber": "^5.5.0",
