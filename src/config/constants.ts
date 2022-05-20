@@ -35,7 +35,7 @@ export const OPENSEA_API_KEY = process.env.GATSBY_OPENSEA_API_KEY || undefined
 export const NetworkContextName = "NETWORK"
 
 // CONSTANTS
-export const IS_PRODUCTION = false
+export const IS_PRODUCTION = true
 export const NETWORK_CHAIN_ID = IS_PRODUCTION ? 1 : 4
 
 export const ETH_RPC = IS_PRODUCTION
@@ -46,7 +46,7 @@ export const OLD_JENNY = IS_PRODUCTION
   ? "0xa499648fd0e80fd911972bbeb069e4c20e68bf22"
   : "0x02fcbdb70a3c5b581d255ce1067a55d3d1ce6b4d"
 export const MIGRATOR = IS_PRODUCTION
-  ? ""
+  ? "0x1d7668bD53DE58687Bf44bE0c92442A1d602348c"
   : "0xd372aE03E8677ccC99308AbD1C3A478D2109A4A5"
 
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
