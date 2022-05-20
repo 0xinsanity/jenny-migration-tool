@@ -35,11 +35,12 @@ export const OPENSEA_API_KEY = process.env.GATSBY_OPENSEA_API_KEY || undefined
 export const NetworkContextName = "NETWORK"
 
 // CONSTANTS
-
-export const ETH_RPC =
-  "https://rinkeby.infura.io/v3/626c57c48b2f4e34bb6e05eca7ea256a"
-export const NETWORK_CHAIN_ID = 4
 export const IS_PRODUCTION = false
+export const NETWORK_CHAIN_ID = IS_PRODUCTION ? 1 : 4
+
+export const ETH_RPC = IS_PRODUCTION
+  ? "https://mainnet.infura.io/v3/fbfed28156284a3aaaec6e9f655933d5"
+  : "https://rinkeby.infura.io/v3/626c57c48b2f4e34bb6e05eca7ea256a"
 
 export const OLD_JENNY = IS_PRODUCTION
   ? "0xa499648fd0e80fd911972bbeb069e4c20e68bf22"
